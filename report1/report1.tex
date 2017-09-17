@@ -1,0 +1,66 @@
+\documentclass[11pt, conference]{IEEEtran}
+\usepackage{xeCJK}
+\usepackage{amsmath}
+% 用来断词，当出现花括号中的单词时，若遇到换行需要断词的话就只能从-处断。
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+    \title{Report of Chapter 1: Automata}
+    \author{\IEEEauthorblockN{林奇峰, Qifeng Lin}\IEEEauthorblockA{Student ID:17214656}}
+    \date{\today}
+    \maketitle
+
+    \section{Review}
+    In this chapter, it mainly describe how to perform model checking to verify properties of systems using automata.
+
+    automata is the plurality of automaton, which is very easy to be confused. And an automaton is constructed of states and transitions. As for states, they describe what the model holds at some moment. Transitions shows how a state evolves to another one or back to itself. In the graphical representation, state is drawn as a circle and transition is drawn as an arrow which indicates the direction of state evolution. Knowing only the notion of state and transition is not enough and it needs to using these to express the model checking. In order to distinguish the allowable transitions from the unallowable ones, defining the notion of execution and execution tree is necessary. Execution is a possible sequence of states to show how the system runs while Execution tree includes all the executions and organized them in a form of tree. Since we need to verify properties of systems, Associating states with some elementary properties(proposition) is necessary. Now all elements for constructing automaton have been ready.
+
+    Before further studying of automata,we need to introduce some formal definitions, which is essential. Formal definition of automata is given as follow: give a set $Prop$=\{$P_1$,...\} of propositions, an automaton is a tuple $\mathcal{A}=<Q, E, T, q_0, l>$ in which
+    \begin{itemize}
+      \item $Q$ is a finite set of states;
+      \item $E$ is the finite set of transition labels;
+      \item $T\subseteq Q$x$E$x$Q$ is the set of transitions;
+      \item $q_0$ is the initial state of the automaton;
+      \item $l$ is the mapping which associates with each state of $Q$ the finite set of elementary properties which hold in that state.
+    \end{itemize}
+    And an execution is a path which is sequence of finite or infinite of transitions in the automata and denoted as $\omega$. The length of $\omega$ is expressed as $|\omega|$. There exists two special cases of execution: one is partial execution which starts from initial state and another one is complete execution which can not be expanded or falls into the deadlock eventually. Sometimes not all states can be reached and thus reachable state is imported.
+
+    All mentioned above can be suited for simple model of systems such as modulo 3 and digicode. It can be easy to verify properties of systems just using state and transition. While in the time of modeling real-life systems, by importing {\itshape state variables}, dividing automata into two parts--control and data--is recommended for convenient. "states+transitions" discussed before constructs the control part and variables stands the data. In this way, transitions in an automaton are allowed only when they satisfied the conditions of state variables.
+
+    However, this form is not suited for the previous formal definition of automaton and thus unfolding the automaton with stated variables into the automation which consists of only states and transitions is necessary. In this way, the states of the unfolded automaton  are called {\itshape global states}.
+
+    The discussion above shows only how to model simple objects which can be described with only one automaton, in other words, one component. However, it is often necessary to break the system into some modules or subsystems, where each one of  modules or subsystems is one automaton. To guarantee the correctness of systems, it should let all modules or subsystems run in correct ways, that is called cooperation. And synchronization is the method to achieve cooperation. To express how synchronization works, {\itshape cartesian product} is imported, which leads to {\itshape synchronized product}.
+
+    For further studying, formal definition of synchronized product is given as follow: a family of n automata, $\forall{i} \in \{1,...,n\}$, $\mathcal{A}_i=<Q_i, E_i,T_i,q_{0,i},l_i>$ and label '-' representing unchange, then {\itshape cartesian product} $\mathcal{A}_1$x...x$\mathcal{A}_n$ constructs automaton $\mathcal{A} =<Q,E,T,q_0,l>$ with:
+     \begin{itemize}
+      \item $Q=Q_1$x...x$Q_n$;
+      \item $E=\prod_{}{}_{1\leq i \leq n}(E_i\cup\{-\})$;
+      \item $T=\left.\{ ((q_1,...,q_n),(q_1',...,q_n')) |  for\right.$ $all$ $i$, $e_i='-'$ and $q_i'=q_i$, or $e_i\neq '-'$ and $(q_i,e_i,q_i')\in T_i \left.\right\} $;
+      \item $q_0=(q_{0,1},...,q_{0,n})$;
+      \item $l((q_1,...,q_n))=\cup _{1\leq i \leq n}l_i(q_i)$
+    \end{itemize}
+    Besides above, it needs to use a synchronization set to restrict the allowable transitions. Synchronization set is defined as follow:
+    \begin{equation*}
+      Sync \subseteq \prod_{1\leq i \leq n}^{}(E_i\cup\{-\})
+    \end{equation*}
+    Then the expression of $T$ can be updated as follow:
+    
+    $T=\left.\{ ((q_1,...,q_n),(e_1,...,e_n)(q_1',...,q_n')) | (e_i,..,e_n)\in Sync \right.$ and $\forall(i)$, $e_i='-'$ and $q_i'=q_i$, or $e_i\neq '-'$ and $(q_i,e_i,q_i')\in T_i \left.\right\} $;
+    
+    Similarly, there also exists reachable states and reachability graph which deletes all the non-reachable states. And verifying systems is focused on the reachable states but not the non-reachable ones. But when systems become bigger and bigger, it will lead to a problem--{\itshape state explosion}. Because it is hard to describe all the states visually which is included all the automata of a big automaton. If the states is infinite, the scale of the automaton is infinite. Otherwise, the scale will increase exponentially.
+    
+    Since we have given the method to express a model with a synchronized product, then two cases of application is introduced: synchronization by message passing and shared variables.
+    
+    As for synchronization by message passing, it defines only two kinds of actions(transitions)--emit and receive messages, denoted as '!' and '?' respectively. And the synchronized product allows only those transitions which perform emission and corresponding reception simultaneously to exist.
+    
+    Synchronization by shared variables method is achieved by letting each components of the automaton communicate with each other through a number of shared variables.
+    
+    \section{Summary}
+    This chapter introduces the notions concerned automaton and shows how to use automata-based method to perform model checking to find if properties of system is satisfied or not. It is an intuitive method to understand system's operation and thus verify properties. However, this technique may be suited for small systems while encounters {\itshape state explosion} problems when systems become bigger and bigger. But it is easy to construct a automaton to perform model checking and thus a good method after all. Because it involves only states and transitions. And in later work, I think this method will be a basic thinking for designing systems.
+    
+     
+    
+     
+    
+
+\end{document} 

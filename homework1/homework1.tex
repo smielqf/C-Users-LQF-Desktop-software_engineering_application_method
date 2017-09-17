@@ -1,0 +1,34 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{xeCJK}
+\begin{document}
+    \title{Homework 1: A Small Program Fragment}
+    \author{林奇峰\\
+     Qifeng Lin\\
+     Student ID:17214656 }
+    \date{\today}
+    \maketitle
+
+\noindent Description:
+
+    {\sffamily\bfseries process} Inc = {\sffamily\bfseries while} {\slshape true} {\sffamily\bfseries do} if {\slshape x} < 200 {\sffamily\bfseries then} {\slshape x}:={\slshape x}+1 {\sffamily\bfseries od}
+
+    {\sffamily\bfseries process} Dec = {\sffamily\bfseries while} {\slshape true} {\sffamily\bfseries do} if {\slshape x} > 0 {\sffamily\bfseries then} {\slshape x}:={\slshape x}-1 {\sffamily\bfseries od}
+
+    {\sffamily\bfseries process} Reset = {\sffamily\bfseries while} {\slshape true} {\sffamily\bfseries do} if {\slshape x} = 200 {\sffamily\bfseries then} {\slshape x}:=0 {\sffamily\bfseries od}
+
+    \begin{flushright}
+      {\slshape is x always between (and including) 0 and 200?}
+    \end{flushright}
+
+\noindent Solution:
+    {\slshape x} is not always between (and including) 0 and 200.
+
+    For example, with the fact that the initial value of {\slshape x} is 200, the {\sffamily\bfseries process Dec}  and the {\sffamily\bfseries process Reset}  run concurrently. Then the execution order may be as follow showing:
+
+    if {\slshape x} = 200 {\sffamily\bfseries ->} if {\slshape x} > 0 {\sffamily\bfseries ->} {\slshape x}:=0  {\sffamily\bfseries ->} {\slshape x}:={\slshape x}-1
+
+    Therefore, the final value of {\slshape x} is -1 and it is not between (and including) 0 and 200.
+    
+    To guarantee the value, it may use some techniques of process synchronization like lock.
+
+\end{document} 
