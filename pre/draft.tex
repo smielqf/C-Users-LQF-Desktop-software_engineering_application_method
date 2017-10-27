@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+    \section{start}
+        It is my part to introduce how to synchronize automata $\mathcal{A}$ and $\mathcal{B}_{\neg\phi}$. My name si Qifeng lin.
+        
+    \section{recall}
+        Recall synchronization of automata in chapter 1, section 1.5. Firstly, it needs to construct a cartesian product of automata $\mathcal{A}_1,\mathcal{A}_2,\dots$. The definition of cartesian product is showed as following. It is divided into five parts: Q, E, T, $q_0$ and l. But the cartesian product is the maximum one and usually exists some redundant elements. Therefore, synchronization set is imported to guarantee the correctness of the automaton and reduce redundant elements.
+
+    \section{automata}
+        After constructing automata $\mathcal{B}_{\neg\phi}$, we can synchronize the automaton $\mathcal{A}$ with automaton $\mathcal{B}_{\neg\phi}$. Automaton $\mathcal{B}_{\neg\phi}$ is constructed as the picture below. It has two states: $q_0$ and $q_1$, and three transitions: $u_0$, $u_1$ and $u_2$. We can see that the transition of automaton $\mathcal{B}_{\neg\phi}$ is labelled by propositions. And whether $q_o$ moves to $q_1$ is not determined though there may exist same combination of propositions at one moment. As for automaton $\mathcal{A}$, it has four states and three of them hold the same properties. And it has five transitions.
+
+    \section{construct cartesian product}
+        Then we construct the cartesian product of automaton $\mathcal{A}$ and $\mathcal{B}_{\neg\phi}$. $Q_1$ corresponds to states of automaton $\mathcal{A}$ and $Q_2$ corresponds to states of automaton $\mathcal{B}_{\neg\phi}$. To distinguish states that hold same propositions, I use subscripts to denote different states. For example, the initial state of automaton $\mathcal{A}$ has subscript 1.
+
+        The set of edges is showed entirely in this slide. And the set of transitions can be reasoned out using the set of edges. The initial state q is a tuple composed of subscript 1 and $q_0$. And the set of mapping propositions is showed in this slide. To simplify the graph, $q_0$ and $q_1$ are denoted as single circle and double circle. And the graph of cartesian product of the two automata is showed in next slide.
+
+    \section{cartesian product graph}
+        As the graph shows, it is the theoretical product and has maximum size. But synchronization rules are often imported.
+
+    \section{synchronization rule}
+        The synchronization rule is that (t,u) is possible only if t leaves a state that satisfies u, denotes as $t\otimes u$.
+
+        For example,  $t\otimes u$ happens when t leaves a state satisfying P. $u_1$ is labelled by (P,Q) or (P,$\neg$Q), therefore, in set \{$(t_1,u_1),(t_2,u_1),(t_3,u_1),(t_4,u_1),(t_5,u_1)$\}, only $t_4\otimes u_1$ is possible.
+
+        And the entire synchronization set is showed in the slide. And the new automaton is denoted as $\mathcal{A}\otimes\mathcal{B}_{\neg\phi}$
+
+    \section{final graph}
+        The graph of automaton $\mathcal{A}\otimes\mathcal{B}_{\neg\phi}$ is showed in the slide. We can see that there exists only 10 transitions compared with 15 ones in origin cartesian product. And there exist a path to double circle side and remain in double circle without blocking. Therefore,  $\mathcal{A}\nvDash\phi$
+\end{document}
