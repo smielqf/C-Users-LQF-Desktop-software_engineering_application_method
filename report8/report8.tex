@@ -1,0 +1,74 @@
+% v2-acmtog-sample.tex, dated March 7 2012
+% This is a sample file for ACM Transactions on Graphics
+%
+% Compilation using 'acmtog.cls' - version 1.2 (March 2012), Aptara Inc.
+% (c) 2010 Association for Computing Machinery (ACM)
+%
+% Questions/Suggestions/Feedback should be addressed to => "acmtexsupport@aptaracorp.com".
+% Users can also go through the FAQs available on the journal's submission webpage.
+%
+% Steps to compile: latex, bibtex, latex latex
+%
+% For tracking purposes => this is v1.2 - March 2012
+\documentclass{acmtog} % V1.2
+
+%\acmVolume{VV}
+%\acmNumber{N}
+%\acmYear{YYYY}
+%\acmMonth{Month}
+%\acmArticleNum{XXX}
+%\acmdoi{10.1145/XXXXXXX.YYYYYYY}
+
+\acmVolume{1}
+\acmNumber{1}
+\acmYear{2017}
+\acmMonth{November}
+\acmArticleNum{1}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{amssymb}
+
+
+% Copyright
+\setcopyright{rightsretained}
+
+
+\begin{document}
+
+\markboth{V. F. Pamplona et al.}{Photorealistic Models for Pupil Light Reflex and Iridal Pattern Deformation}
+
+\title{Comparison between $\overset{\infty}{\textbf{F}}$ and $\overset{\infty}{\textbf{G}}$} % title
+
+\author{Qifeng Lin \\ 17214656}
+% NOTE! Affiliations placed here should be for the institution where the
+%       BULK of the research was done. If the author has gone to a new
+%       institution, before publication, the (above) affiliation should NOT be changed.
+%       The authors 'current' address may be given in the "Author's addresses:" block (below).
+%       So for example, Mr. Fogarty, the bulk of the research was done at UIUC, and he is
+%       currently affiliated with NASA.
+
+
+\maketitle
+
+
+\section{Review}
+    In CTL (Computation Tree logic), $\overset{\infty}{\textbf{F}}$ and $\overset{\infty}{\textbf{G}}$ are the abbreviations of \textbf{GF} and \textbf{FG} respectively.
+
+    Firstly, \textbf{F} means that there exists a moment we want and \text{G} means that all the moments are which we want. By combining \textbf{F} and \textbf{G}, we can derive new combinators which are $\overset{\infty}{\textbf{F}}$ and $\overset{\infty}{\textbf{G}}$. Therefore, $\overset{\infty}{\textbf{F}}$ states that whatever the current moment is, it is always that there exists a moment we want. Consider that there exists so many current moments as the time passes by, then what we want will occur again and again, which we speak as "infinitely often". As for $\overset{\infty}{\textbf{G}}$, it states that from a certain moment onward, all the moments later are which we want. The intuitive recognition can be acquired by the diagram below.
+    \begin{equation*}
+      \begin{aligned}
+       \overset{\infty}{\textbf{F}}P\qquad & \bullet\rightarrow\overset{P}{\circ}\rightarrow\circ\rightarrow\circ\rightarrow\overset{P}{\circ}\rightarrow\dots \\
+       \overset{\infty}{\textbf{G}}P\qquad & \bullet\rightarrow\circ\rightarrow\circ\rightarrow\overset{P}{\circ}\rightarrow\overset{P}{\circ}\rightarrow\dots
+      \end{aligned}
+    \end{equation*}
+    
+    We can see that $\overset{\infty}{\textbf{F}}P$ will guarantee the infinite occurrence of $P$ without giving which moment should hold $P$ and $\overset{\infty}{\textbf{G}}P$ guarantee the occurrence of $P$ in all moments from a certain moment onward.
+\section{Summary}
+    $\overset{\infty}{\textbf{F}}$ and $\overset{\infty}{\textbf{G}}$ look similarly since they both have $\infty$. But their meaning is different and we should pay attention to it. $\overset{\infty}{\textbf{F}}$ emphasizes the random and infinite occurrence of properties while $\overset{\infty}{\textbf{G}}$ stresses the always infinite occurrence of properties from a certain moment.
+
+
+
+\end{document}
+% End of v2-acmtog-sample.tex (March 2012) - Gerry Murray, ACM
